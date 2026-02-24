@@ -51,10 +51,9 @@ Options -Indexes
 # Security headers
 <IfModule mod_headers.c>
   Header set X-Content-Type-Options "nosniff"
-  Header set X-Frame-Options "SAMEORIGIN"
   Header set X-XSS-Protection "1; mode=block"
   Header set Referrer-Policy "no-referrer-when-downgrade"
   
-  # Content Security Policy (adjust as needed)
-  Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://api.npi-respi-event.intechify.in https://npi-respi-event.intechify.in https://scientimed.s3.ap-south-1.amazonaws.com; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self';"
+  # Content Security Policy - Allow YouTube embeds and Pusher WebSocket connections
+  Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js.pusher.com https://www.youtube.com https://s.ytimg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https: http:; frame-src https://www.youtube.com https://www.youtube-nocookie.com https://youtube.com; connect-src 'self' https://*.pusher.com wss://*.pusher.com https://sockjs.pusher.com wss://ws-ap2.pusher.com https://api.intechify.in; media-src 'self' https://www.youtube.com blob:; worker-src 'self' blob:;"
 </IfModule>
